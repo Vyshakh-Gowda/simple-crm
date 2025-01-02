@@ -13,7 +13,6 @@ from crm import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('crm.urls')),
     path('', views.dashboard, name='dashboard'),
     path('customers/', views.customer_list, name='customer_list'),
     path('customers/add/', views.add_customer, name='add_customer'),
