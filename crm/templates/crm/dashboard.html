@@ -1,0 +1,71 @@
+
+{% extends 'crm/base.html' %}
+
+{% block content %}
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+    <div class="bg-white rounded-lg shadow-md p-6">
+        <h3 class="text-xl font-semibold mb-2">Total Customers</h3>
+        <p class="text-3xl">{{ total_customers }}</p>
+    </div>
+    <div class="bg-white rounded-lg shadow-md p-6">
+        <h3 class="text-xl font-semibold mb-2">Total Deals</h3>
+        <p class="text-3xl">{{ total_deals }}</p>
+    </div>
+    <div class="bg-white rounded-lg shadow-md p-6">
+        <h3 class="text-xl font-semibold mb-2">Total Value</h3>
+        <p class="text-3xl">${{ total_value|floatformat:2 }}</p>
+    </div>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="bg-white rounded-lg shadow-md p-6">
+        <h3 class="text-xl font-semibold mb-4">Recent Customers</h3>
+        <div class="overflow-x-auto">
+            <table class="min-w-full table-auto">
+                <thead>
+                    <tr class="bg-gray-100">
+                        <th class="px-6 py-3 text-left">Name</th>
+                        <th class="px-6 py-3 text-left">Company</th>
+                        <th class="px-6 py-3 text-left">Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for customer in customers %}
+                    <tr class="border-b">
+                        <td class="px-6 py-4">{{ customer.name }}</td>
+                        <td class="px-6 py-4">{{ customer.company }}</td>
+                        <td class="px-6 py-4">{{ customer.email }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <div class="bg-white rounded-lg shadow-md p-6">
+        <h3 class="text-xl font-semibold mb-4">Recent Deals</h3>
+        <div class="overflow-x-auto">
+            <table class="min-w-full table-auto">
+                <thead>
+                    <tr class="bg-gray-100">
+                        <th class="px-6 py-3 text-left">Title</th>
+                        <th class="px-6 py-3 text-left">Customer</th>
+                        <th class="px-6 py-3 text-left">Amount</th>
+                        <th class="px-6 py-3 text-left">Stage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for deal in deals %}
+                    <tr class="border-b">
+                        <td class="px-6 py-4">{{ deal.title }}</td>
+                        <td class="px-6 py-4">{{ deal.customer.name }}</td>
+                        <td class="px-6 py-4">${{ deal.amount }}</td>
+                        <td class="px-6 py-4">{{ deal.get_stage_display }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
