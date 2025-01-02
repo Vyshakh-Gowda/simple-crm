@@ -100,6 +100,14 @@ DATABASES = {
     }
 }
 
+# In simplecrm/settings.py
+
+ALLOWED_HOSTS = [
+    'simple-crm-agq9.onrender.com',  # Your Render domain
+    'localhost',
+    '127.0.0.1',
+    '*',  # Only for development, remove in production
+]
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
