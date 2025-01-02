@@ -1,0 +1,38 @@
+{# templates/crm/customer_list.html #}
+{% extends 'crm/base.html' %}
+
+{% block content %}
+<div class="bg-white rounded-lg shadow-md p-6">
+    <div class="flex justify-between items-center mb-6">
+        <h2 class="text-2xl font-semibold">Customers</h2>
+        <a href="{% url 'add_customer' %}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            Add Customer
+        </a>
+    </div>
+    
+    <div class="overflow-x-auto">
+        <table class="min-w-full table-auto">
+            <thead>
+                <tr class="bg-gray-100">
+                    <th class="px-6 py-3 text-left">Name</th>
+                    <th class="px-6 py-3 text-left">Company</th>
+                    <th class="px-6 py-3 text-left">Email</th>
+                    <th class="px-6 py-3 text-left">Phone</th>
+                    <th class="px-6 py-3 text-left">Created</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for customer in customers %}
+                <tr class="border-b">
+                    <td class="px-6 py-4">{{ customer.name }}</td>
+                    <td class="px-6 py-4">{{ customer.company }}</td>
+                    <td class="px-6 py-4">{{ customer.email }}</td>
+                    <td class="px-6 py-4">{{ customer.phone }}</td>
+                    <td class="px-6 py-4">{{ customer.created_at|date:"M d, Y" }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

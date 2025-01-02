@@ -109,6 +109,10 @@ ALLOWED_HOSTS = [
     '*',  # Only for development, remove in production
 ]
 
+LOGIN_URL = '/admin/login/'
+LOGIN_REDIRECT_URL = '/'
+
+
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 

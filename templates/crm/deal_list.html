@@ -1,0 +1,39 @@
+
+{# templates/crm/deal_list.html #}
+{% extends 'crm/base.html' %}
+
+{% block content %}
+<div class="bg-white rounded-lg shadow-md p-6">
+    <div class="flex justify-between items-center mb-6">
+        <h2 class="text-2xl font-semibold">Deals</h2>
+        <a href="{% url 'add_deal' %}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            Add Deal
+        </a>
+    </div>
+    
+    <div class="overflow-x-auto">
+        <table class="min-w-full table-auto">
+            <thead>
+                <tr class="bg-gray-100">
+                    <th class="px-6 py-3 text-left">Title</th>
+                    <th class="px-6 py-3 text-left">Customer</th>
+                    <th class="px-6 py-3 text-left">Amount</th>
+                    <th class="px-6 py-3 text-left">Stage</th>
+                    <th class="px-6 py-3 text-left">Created</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for deal in deals %}
+                <tr class="border-b">
+                    <td class="px-6 py-4">{{ deal.title }}</td>
+                    <td class="px-6 py-4">{{ deal.customer.name }}</td>
+                    <td class="px-6 py-4">${{ deal.amount }}</td>
+                    <td class="px-6 py-4">{{ deal.get_stage_display }}</td>
+                    <td class="px-6 py-4">{{ deal.created_at|date:"M d, Y" }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
